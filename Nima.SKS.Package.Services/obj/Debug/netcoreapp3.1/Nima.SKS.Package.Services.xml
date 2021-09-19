@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nima.SKS.Package.Services</name>
+    </assembly>
+    <members>
+        <member name="T:Nima.SKS.Package.Services.Attributes.ValidateModelStateAttribute">
+            <summary>
+            Model state validation attribute
+            </summary>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Attributes.ValidateModelStateAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Called before the action method is invoked
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Nima.SKS.Package.Services.Controllers.LogisticsPartnerApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Controllers.LogisticsPartnerApiController.TransitionParcel(Nima.SKS.Package.Services.Models.Parcel,System.String)">
+            <summary>
+            Transfer an existing parcel into the system from the service of a logistics partner. 
+            </summary>
+            <param name="body"></param>
+            <param name="trackingId">The tracking ID of the parcel. E.g. PYJRB4HZ6 </param>
+            <response code="200">Successfully transitioned the parcel</response>
+            <response code="400">The operation failed due to an error.</response>
+        </member>
+        <member name="T:Nima.SKS.Package.Services.Controllers.ParcelWebhookApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Controllers.ParcelWebhookApiController.ApiParcelByTrackingIdWebhooksGet(System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>Gets all registered subscriptions for the parcel webhook.</remarks>
+            <param name="trackingId"></param>
+            <response code="200">List of webooks for the &#x60;trackingId&#x60;</response>
+            <response code="404">No parcel found with that tracking ID.</response>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Controllers.ParcelWebhookApiController.ApiParcelByTrackingIdWebhooksPost(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>Subscribes to a webhook notification for the specific parcel.</remarks>
+            <param name="trackingId"></param>
+            <param name="url"></param>
+            <response code="200">Successful response</response>
+            <response code="404">No parcel found with that tracking ID.</response>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Controllers.ParcelWebhookApiController.ApiParcelWebhooksByIdDelete(System.Nullable{System.Int64})">
+            <summary>
+            
+            </summary>
+            <remarks>Removes an existing webhook subscription.</remarks>
+            <param name="id"></param>
+            <response code="200">Success</response>
+            <response code="404">Subscription does not exist.</response>
+        </member>
+        <member name="T:Nima.SKS.Package.Services.Controllers.ReceipientApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Controllers.ReceipientApiController.TrackParcel(System.String)">
+            <summary>
+            Find the latest state of a parcel by its tracking ID. 
+            </summary>
+            <param name="trackingId">The tracking ID of the parcel. E.g. PYJRB4HZ6 </param>
+            <response code="200">Parcel exists, here&#x27;s the tracking information.</response>
+            <response code="400">The operation failed due to an error.</response>
+            <response code="404">Parcel does not exist with this tracking ID.</response>
+        </member>
+        <member name="T:Nima.SKS.Package.Services.Controllers.SenderApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Controllers.SenderApiController.SubmitParcel(Nima.SKS.Package.Services.Models.Parcel)">
+            <summary>
+            Submit a new parcel to the logistics service. 
+            </summary>
+            <param name="body"></param>
+            <response code="200">Successfully submitted the new parcel</response>
+            <response code="400">The operation failed due to an error.</response>
+        </member>
+        <member name="T:Nima.SKS.Package.Services.Controllers.StaffApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Controllers.StaffApiController.ReportHop(System.String,System.String)">
+            <summary>
+            Report that a Parcel has been arrived at a certain Hop either warehouse or truck. 
+            </summary>
+            <param name="trackingId">The tracking ID of the parcel. E.g. PYJRB4HZ6 </param>
+            <param name="code"></param>
+            <response code="200">Successfully reported hop.</response>
+            <response code="500">An Error occurred.</response>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Controllers.StaffApiController.ReportParcelDelivery(System.String)">
+            <summary>
+            Report that a Parcel has been delivered at it&#x27;s final destination address. 
+            </summary>
+            <param name="trackingId">The tracking ID of the parcel. E.g. PYJRB4HZ6 </param>
+            <response code="200">Successfully reported hop.</response>
+            <response code="400">The operation failed due to an error.</response>
+            <response code="404">Parcel does not exist with this tracking ID. </response>
+        </member>
+        <member name="T:Nima.SKS.Package.Services.Controllers.WarehouseManagementApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Controllers.WarehouseManagementApiController.ExportWarehouses">
+            <summary>
+            Exports the hierarchy of Warehouse and Truck objects. 
+            </summary>
+            <response code="200">Successful response</response>
+            <response code="400">An error occurred loading.</response>
+            <response code="404">No hierarchy loaded yet.</response>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Controllers.WarehouseManagementApiController.GetWarehouse(System.String)">
+            <summary>
+            Get a certain warehouse or truck by code
+            </summary>
+            <param name="code"></param>
+            <response code="200">Successful response</response>
+            <response code="400">An error occurred loading.</response>
+            <response code="404">Warehouse id not found</response>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Controllers.WarehouseManagementApiController.ImportWarehouses(Nima.SKS.Package.Services.Models.Warehouse)">
+            <summary>
+            Imports a hierarchy of Warehouse and Truck objects. 
+            </summary>
+            <param name="body"></param>
+            <response code="200">Successfully loaded.</response>
+            <response code="400">The operation failed due to an error.</response>
+        </member>
+        <member name="T:Nima.SKS.Package.Services.Filters.BasePathFilter">
+            <summary>
+            BasePath Document Filter sets BasePath property of Swagger and removes it from the individual URL paths
+            </summary>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Filters.BasePathFilter.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="basePath">BasePath to remove from Operations</param>
+        </member>
+        <member name="P:Nima.SKS.Package.Services.Filters.BasePathFilter.BasePath">
+            <summary>
+            Gets the BasePath of the Swagger Doc
+            </summary>
+            <returns>The BasePath of the Swagger Doc</returns>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Filters.BasePathFilter.Apply(Microsoft.OpenApi.Models.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+            <summary>
+            Apply the filter
+            </summary>
+            <param name="swaggerDoc">OpenApiDocument</param>
+            <param name="context">FilterContext</param>
+        </member>
+        <member name="T:Nima.SKS.Package.Services.Filters.GeneratePathParamsValidationFilter">
+            <summary>
+            Path Parameter Validation Rules Filter
+            </summary>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Filters.GeneratePathParamsValidationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="operation">Operation</param>
+            <param name="context">OperationFilterContext</param>
+        </member>
+        <member name="T:Nima.SKS.Package.Services.Program">
+            <summary>
+            Program
+            </summary>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Program.Main(System.String[])">
+            <summary>
+            Main
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Create the web host builder.
+            </summary>
+            <param name="args"></param>
+            <returns>IWebHostBuilder</returns>
+        </member>
+        <member name="T:Nima.SKS.Package.Services.Startup">
+            <summary>
+            Startup
+            </summary>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Startup.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="env"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Nima.SKS.Package.Services.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="loggerFactory"></param>
+        </member>
+    </members>
+</doc>

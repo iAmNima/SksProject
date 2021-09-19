@@ -1,0 +1,15 @@
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\bin\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.exe
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\bin\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.deps.json
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\bin\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.runtimeconfig.json
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\bin\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.runtimeconfig.dev.json
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\bin\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.dll
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\bin\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.pdb
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.csprojAssemblyReference.cache
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.AssemblyInfoInputs.cache
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.AssemblyInfo.cs
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.csproj.CoreCompileInputs.cache
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.csproj.CopyComplete
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.dll
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.pdb
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.Interfaces\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.Interfaces.genruntimeconfig.cache

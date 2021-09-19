@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "J38dqWwWLJ2WavBb0xkwldTeoxbHlDryTc/+1TlxsmfZoBr/qX+i1E8d0eYTf76CKjydd+hsWBwK00aDru/3Gg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\nimab\\OneDrive\\Desktop\\semester 5\\SKS\\Nima.SKS.Package.Services\\Nima.SKS.Package.Services.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nimab\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.0.0\\microsoft.aspnetcore.jsonpatch.3.0.0.nupkg.sha512",
+    "C:\\Users\\nimab\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.0.0\\microsoft.aspnetcore.mvc.newtonsoftjson.3.0.0.nupkg.sha512",
+    "C:\\Users\\nimab\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",
+    "C:\\Users\\nimab\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\nimab\\.nuget\\packages\\microsoft.openapi\\1.1.4\\microsoft.openapi.1.1.4.nupkg.sha512",
+    "C:\\Users\\nimab\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\nimab\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\nimab\\.nuget\\packages\\swashbuckle.aspnetcore\\5.5.1\\swashbuckle.aspnetcore.5.5.1.nupkg.sha512",
+    "C:\\Users\\nimab\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\5.5.1\\swashbuckle.aspnetcore.annotations.5.5.1.nupkg.sha512",
+    "C:\\Users\\nimab\\.nuget\\packages\\swashbuckle.aspnetcore.newtonsoft\\5.5.1\\swashbuckle.aspnetcore.newtonsoft.5.5.1.nupkg.sha512",
+    "C:\\Users\\nimab\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.5.1\\swashbuckle.aspnetcore.swagger.5.5.1.nupkg.sha512",
+    "C:\\Users\\nimab\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.5.1\\swashbuckle.aspnetcore.swaggergen.5.5.1.nupkg.sha512",
+    "C:\\Users\\nimab\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.5.1\\swashbuckle.aspnetcore.swaggerui.5.5.1.nupkg.sha512"
+  ],
+  "logs": []
+}

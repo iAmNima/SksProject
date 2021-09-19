@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "0y7TjE+EcH/CKsiCi3qoIHYcuLH1Rakw/vR0wulnkppQk0q14A4tacyvpEjRx/5op3FwA/FIQvmrgPf3XMUfGQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\nimab\\OneDrive\\Desktop\\semester 5\\SKS\\Nima.SKS.Package.Services.DTOs\\Nima.SKS.Package.Services.DTOs.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nimab\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

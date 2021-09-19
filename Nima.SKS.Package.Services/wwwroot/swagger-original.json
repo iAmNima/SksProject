@@ -1,0 +1,849 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Parcel Logistics Service",
+    "contact" : {
+      "name" : "SKS",
+      "url" : "http://www.technikum-wien.at/"
+    },
+    "version" : "1.20.0"
+  },
+  "servers" : [ {
+    "url" : "/"
+  } ],
+  "tags" : [ {
+    "name" : "sender",
+    "description" : "Operations for the sender of a parcel."
+  }, {
+    "name" : "receipient",
+    "description" : "Operations for the receiver of a parcel."
+  }, {
+    "name" : "warehouse-management",
+    "description" : "Operations for the warehouse management."
+  }, {
+    "name" : "logisticsPartner",
+    "description" : "Operations for working with a logistics partner for a different region."
+  }, {
+    "name" : "staff",
+    "description" : "Operations for the logistics staff."
+  } ],
+  "paths" : {
+    "/parcel" : {
+      "post" : {
+        "tags" : [ "sender" ],
+        "summary" : "Submit a new parcel to the logistics service.\n",
+        "operationId" : "submitParcel",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/parcel"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfully submitted the new parcel",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/newParcelInfo"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "The operation failed due to an error.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parcel/{trackingId}" : {
+      "get" : {
+        "tags" : [ "receipient" ],
+        "summary" : "Find the latest state of a parcel by its tracking ID.\n",
+        "operationId" : "trackParcel",
+        "parameters" : [ {
+          "name" : "trackingId",
+          "in" : "path",
+          "description" : "The tracking ID of the parcel.\nE.g. PYJRB4HZ6\n",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{9}$",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Parcel exists, here's the tracking information.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/trackingInformation"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "The operation failed due to an error.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Parcel does not exist with this tracking ID.",
+            "content" : { }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "logisticsPartner" ],
+        "summary" : "Transfer an existing parcel into the system from the service of a logistics partner.\n",
+        "operationId" : "transitionParcel",
+        "parameters" : [ {
+          "name" : "trackingId",
+          "in" : "path",
+          "description" : "The tracking ID of the parcel.\nE.g. PYJRB4HZ6\n",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{9}$",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/parcel"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfully transitioned the parcel",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/newParcelInfo"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "The operation failed due to an error.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parcel/{trackingId}/reportDelivery/" : {
+      "post" : {
+        "tags" : [ "staff" ],
+        "summary" : "Report that a Parcel has been delivered at it's final destination address.\n",
+        "operationId" : "reportParcelDelivery",
+        "parameters" : [ {
+          "name" : "trackingId",
+          "in" : "path",
+          "description" : "The tracking ID of the parcel.\nE.g. PYJRB4HZ6\n",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{9}$",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully reported hop.",
+            "content" : { }
+          },
+          "400" : {
+            "description" : "The operation failed due to an error.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Parcel does not exist with this tracking ID.\n",
+            "content" : { }
+          }
+        }
+      }
+    },
+    "/parcel/{trackingId}/reportHop/{code}" : {
+      "post" : {
+        "tags" : [ "staff" ],
+        "summary" : "Report that a Parcel has been arrived at a certain Hop either warehouse or truck.\n",
+        "operationId" : "reportHop",
+        "parameters" : [ {
+          "name" : "trackingId",
+          "in" : "path",
+          "description" : "The tracking ID of the parcel.\nE.g. PYJRB4HZ6\n",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{9}$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "code",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully reported hop.",
+            "content" : { }
+          },
+          "500" : {
+            "description" : "An Error occurred.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/warehouse" : {
+      "get" : {
+        "tags" : [ "warehouse-management" ],
+        "summary" : "Exports the hierarchy of Warehouse and Truck objects.\n",
+        "operationId" : "exportWarehouses",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/warehouse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "An error occurred loading.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "No hierarchy loaded yet.",
+            "content" : { }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "warehouse-management" ],
+        "summary" : "Imports a hierarchy of Warehouse and Truck objects.\n",
+        "operationId" : "importWarehouses",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/warehouse"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfully loaded.",
+            "content" : { }
+          },
+          "400" : {
+            "description" : "The operation failed due to an error.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/warehouse/{code}" : {
+      "get" : {
+        "tags" : [ "warehouse-management" ],
+        "summary" : "Get a certain warehouse or truck by code",
+        "operationId" : "getWarehouse",
+        "parameters" : [ {
+          "name" : "code",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/warehouse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "An error occurred loading.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Warehouse id not found"
+          }
+        }
+      }
+    },
+    "/parcel/{trackingId}/webhooks" : {
+      "get" : {
+        "tags" : [ "parcelWebhook" ],
+        "description" : "Gets all registered subscriptions for the parcel webhook.",
+        "operationId" : "ApiParcelByTrackingIdWebhooksGet",
+        "parameters" : [ {
+          "name" : "trackingId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{9}$",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "List of webooks for the `trackingId`",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/webhookResponses"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "No parcel found with that tracking ID.",
+            "content" : { }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "parcelWebhook" ],
+        "description" : "Subscribes to a webhook notification for the specific parcel.",
+        "operationId" : "ApiParcelByTrackingIdWebhooksPost",
+        "parameters" : [ {
+          "name" : "trackingId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{9}$",
+            "type" : "string"
+          }
+        }, {
+          "name" : "url",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/webhookResponse"
+                }
+              },
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/webhookResponse"
+                }
+              },
+              "text/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/webhookResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "No parcel found with that tracking ID.",
+            "content" : { }
+          }
+        },
+        "callbacks" : {
+          "myevent" : {
+            "{$request.query.url}?trackingId={$request.path.trackingId}" : {
+              "post" : {
+                "requestBody" : {
+                  "content" : {
+                    "application/json" : {
+                      "schema" : {
+                        "$ref" : "#/components/schemas/webhookMessage"
+                      }
+                    }
+                  }
+                },
+                "responses" : {
+                  "200" : {
+                    "description" : "OK",
+                    "content" : { }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parcel/webhooks/{id}" : {
+      "delete" : {
+        "tags" : [ "parcelWebhook" ],
+        "description" : "Removes an existing webhook subscription.",
+        "operationId" : "ApiParcelWebhooksByIdDelete",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : { }
+          },
+          "404" : {
+            "description" : "Subscription does not exist.",
+            "content" : { }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "parcel" : {
+        "required" : [ "receipient", "sender", "weight" ],
+        "type" : "object",
+        "properties" : {
+          "weight" : {
+            "type" : "number",
+            "format" : "float"
+          },
+          "receipient" : {
+            "$ref" : "#/components/schemas/receipient"
+          },
+          "sender" : {
+            "$ref" : "#/components/schemas/receipient"
+          }
+        },
+        "example" : {
+          "weight" : 5.2,
+          "receipient" : {
+            "name" : "Microsoft",
+            "street" : "Am Europlatz 3",
+            "postalCode" : "A-1120",
+            "city" : "Wien",
+            "country" : "Austria"
+          },
+          "sender" : {
+            "name" : "Tux L.-Oves Azure",
+            "street" : "9812 NE Aluxstreet",
+            "postalCode" : 98052,
+            "city" : "Redmond",
+            "country" : "United States"
+          }
+        }
+      },
+      "receipient" : {
+        "required" : [ "city", "country", "name", "postalCode", "street" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "Name of person or company."
+          },
+          "street" : {
+            "type" : "string",
+            "description" : "Street"
+          },
+          "postalCode" : {
+            "type" : "string",
+            "description" : "Postalcode"
+          },
+          "city" : {
+            "type" : "string",
+            "description" : "City"
+          },
+          "country" : {
+            "type" : "string",
+            "description" : "Country"
+          }
+        },
+        "example" : {
+          "name" : "Tux L.-Oves Azure",
+          "street" : "Am Europlatz 3",
+          "postalCode" : "A-1120",
+          "city" : "Wien",
+          "country" : "Austria"
+        }
+      },
+      "hop" : {
+        "required" : [ "code", "description", "hopType", "locationCoordinates", "locationName", "processingDelayMins" ],
+        "type" : "object",
+        "properties" : {
+          "hopType" : {
+            "type" : "string"
+          },
+          "code" : {
+            "pattern" : "^[A-Z]{4}\\d{1,4}$",
+            "type" : "string",
+            "description" : "Unique CODE of the hop."
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Description of the hop."
+          },
+          "processingDelayMins" : {
+            "type" : "integer",
+            "description" : "Delay processing takes on the hop."
+          },
+          "locationName" : {
+            "type" : "string",
+            "description" : "Name of the location (village, city, ..) of the hop."
+          },
+          "locationCoordinates" : {
+            "$ref" : "#/components/schemas/geoCoordinate"
+          }
+        },
+        "discriminator" : {
+          "propertyName" : "hopType"
+        }
+      },
+      "warehouse" : {
+        "required" : [ "code", "description", "hopType", "level", "locationCoordinates", "locationName", "nextHops", "processingDelayMins" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/hop"
+        }, {
+          "properties" : {
+            "level" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "nextHops" : {
+              "type" : "array",
+              "description" : "Next hops after this warehouse (warehouses or trucks).",
+              "items" : {
+                "$ref" : "#/components/schemas/warehouse_nextHops"
+              }
+            }
+          }
+        } ]
+      },
+      "transferwarehouse" : {
+        "required" : [ "code", "description", "hopType", "locationCoordinates", "locationName", "logisticsPartner", "logisticsPartnerUrl", "processingDelayMins", "regionGeoJson" ],
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/hop"
+        }, {
+          "properties" : {
+            "regionGeoJson" : {
+              "type" : "string",
+              "description" : "GeoJSON of the are covered by the logistics partner."
+            },
+            "logisticsPartner" : {
+              "type" : "string",
+              "description" : "Name of the logistics partner."
+            },
+            "logisticsPartnerUrl" : {
+              "type" : "string",
+              "description" : "BaseURL of the logistics partner's REST service."
+            }
+          }
+        } ]
+      },
+      "truck" : {
+        "required" : [ "code", "description", "hopType", "locationCoordinates", "locationName", "numberPlate", "processingDelayMins", "regionGeoJson" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/hop"
+        }, {
+          "properties" : {
+            "regionGeoJson" : {
+              "type" : "string",
+              "description" : "GeoJSON of the are covered by the truck."
+            },
+            "numberPlate" : {
+              "type" : "string",
+              "description" : "The truck's number plate."
+            }
+          }
+        } ]
+      },
+      "error" : {
+        "required" : [ "errorMessage" ],
+        "type" : "object",
+        "properties" : {
+          "errorMessage" : {
+            "type" : "string",
+            "description" : "The error message."
+          }
+        }
+      },
+      "newParcelInfo" : {
+        "type" : "object",
+        "properties" : {
+          "trackingId" : {
+            "pattern" : "^[A-Z0-9]{9}$",
+            "type" : "string",
+            "description" : "The tracking ID of the parcel.\n",
+            "example" : "PYJRB4HZ6"
+          }
+        },
+        "example" : {
+          "trackingId" : "PYJRB4HZ6"
+        }
+      },
+      "hopArrival" : {
+        "required" : [ "code", "dateTime", "description" ],
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "pattern" : "^[A-Z]{4}\\d{1,4}$",
+            "type" : "string",
+            "description" : "Unique CODE of the hop."
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Description of the hop."
+          },
+          "dateTime" : {
+            "type" : "string",
+            "description" : "The date/time the parcel arrived at the hop.",
+            "format" : "date-time"
+          }
+        },
+        "example" : {
+          "dateTime" : "2000-01-23T04:56:07.000+00:00",
+          "code" : "code",
+          "description" : "description"
+        }
+      },
+      "trackingInformation" : {
+        "required" : [ "futureHops", "state", "visitedHops" ],
+        "type" : "object",
+        "properties" : {
+          "state" : {
+            "type" : "string",
+            "description" : "State of the parcel.",
+            "enum" : [ "Pickup", "InTransport", "InTruckDelivery", "Transferred", "Delivered" ]
+          },
+          "visitedHops" : {
+            "type" : "array",
+            "description" : "Hops visited in the past.",
+            "items" : {
+              "$ref" : "#/components/schemas/hopArrival"
+            }
+          },
+          "futureHops" : {
+            "type" : "array",
+            "description" : "Hops coming up in the future - their times are estimations.",
+            "items" : {
+              "$ref" : "#/components/schemas/hopArrival"
+            }
+          }
+        },
+        "example" : {
+          "visitedHops" : [ {
+            "dateTime" : "2000-01-23T04:56:07.000+00:00",
+            "code" : "code",
+            "description" : "description"
+          }, {
+            "dateTime" : "2000-01-23T04:56:07.000+00:00",
+            "code" : "code",
+            "description" : "description"
+          } ],
+          "futureHops" : [ null, null ],
+          "state" : "Pickup"
+        }
+      },
+      "geoCoordinate" : {
+        "required" : [ "lat", "lon" ],
+        "type" : "object",
+        "properties" : {
+          "lat" : {
+            "type" : "number",
+            "description" : "Latitude of the coordinate.",
+            "format" : "double"
+          },
+          "lon" : {
+            "type" : "number",
+            "description" : "Longitude of the coordinate.",
+            "format" : "double"
+          }
+        }
+      },
+      "webhookResponse" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "trackingId" : {
+            "pattern" : "^[A-Z0-9]{9}$",
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        },
+        "example" : {
+          "created_at" : "2000-01-23T04:56:07.000+00:00",
+          "id" : 0,
+          "url" : "url",
+          "trackingId" : "trackingId"
+        }
+      },
+      "webhookResponses" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/webhookResponse"
+        }
+      },
+      "webhookMessage" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/trackingInformation"
+        }, {
+          "properties" : {
+            "trackingId" : {
+              "pattern" : "^[A-Z0-9]{9}$",
+              "type" : "string"
+            }
+          }
+        } ]
+      },
+      "warehouse_nextHops" : {
+        "required" : [ "hop", "traveltimeMins" ],
+        "type" : "object",
+        "properties" : {
+          "traveltimeMins" : {
+            "type" : "integer"
+          },
+          "hop" : {
+            "$ref" : "#/components/schemas/hop"
+          }
+        }
+      }
+    },
+    "responses" : {
+      "400" : {
+        "description" : "The operation failed due to an error.",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "parameters" : {
+      "code" : {
+        "name" : "code",
+        "in" : "path",
+        "description" : "The Code of the hop (Warehouse or Truck).",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "pattern" : "^[A-Z]{4}\\d{1,4}$",
+          "type" : "string"
+        }
+      },
+      "trackingId" : {
+        "name" : "trackingId",
+        "in" : "path",
+        "description" : "The tracking ID of the parcel.\nE.g. PYJRB4HZ6\n",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "pattern" : "^[A-Z0-9]{9}$",
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

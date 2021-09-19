@@ -1,0 +1,15 @@
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\bin\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.exe
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\bin\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.deps.json
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\bin\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.runtimeconfig.json
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\bin\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.runtimeconfig.dev.json
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\bin\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.dll
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\bin\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.pdb
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.csprojAssemblyReference.cache
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.AssemblyInfoInputs.cache
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.AssemblyInfo.cs
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.csproj.CoreCompileInputs.cache
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.csproj.CopyComplete
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.dll
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.pdb
+C:\Users\nimab\OneDrive\Desktop\semester 5\SKS\Nima.SKS.Package.Services.DTOs\obj\Debug\netcoreapp3.1\Nima.SKS.Package.Services.DTOs.genruntimeconfig.cache
