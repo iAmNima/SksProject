@@ -8,4 +8,8 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Nima.SKS.Package.Services.Interfaces\Nima.SKS.Package.Services.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

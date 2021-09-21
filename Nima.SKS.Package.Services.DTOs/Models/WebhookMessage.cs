@@ -24,7 +24,7 @@ namespace Nima.SKS.Package.Services.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class WebhookMessage : TrackingInformation, IEquatable<WebhookMessage>
+    public partial class WebhookMessage : TrackingInformation
     { 
         /// <summary>
         /// Gets or Sets TrackingId

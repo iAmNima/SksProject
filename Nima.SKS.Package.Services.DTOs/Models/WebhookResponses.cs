@@ -24,7 +24,7 @@ namespace Nima.SKS.Package.Services.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class WebhookResponses : List<WebhookResponse>, IEquatable<WebhookResponses>
+    public partial class WebhookResponses : List<WebhookResponse>
     { 
         /// <summary>
         /// Returns the string presentation of the object

@@ -10,6 +10,19 @@
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
+      },
+      "Nima.SKS.Package.Services.Interfaces/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "bin/placeholder/Nima.SKS.Package.Services.Interfaces.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Nima.SKS.Package.Services.Interfaces.dll": {}
+        }
       }
     }
   },
@@ -40,11 +53,17 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
+    },
+    "Nima.SKS.Package.Services.Interfaces/1.0.0": {
+      "type": "project",
+      "path": "../Nima.SKS.Package.Services.Interfaces/Nima.SKS.Package.Services.Interfaces.csproj",
+      "msbuildProject": "../Nima.SKS.Package.Services.Interfaces/Nima.SKS.Package.Services.Interfaces.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Newtonsoft.Json >= 13.0.1"
+      "Newtonsoft.Json >= 13.0.1",
+      "Nima.SKS.Package.Services.Interfaces >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -73,7 +92,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\nimab\\OneDrive\\Desktop\\semester 5\\SKS\\Nima.SKS.Package.Services.Interfaces\\Nima.SKS.Package.Services.Interfaces.csproj": {
+              "projectPath": "C:\\Users\\nimab\\OneDrive\\Desktop\\semester 5\\SKS\\Nima.SKS.Package.Services.Interfaces\\Nima.SKS.Package.Services.Interfaces.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

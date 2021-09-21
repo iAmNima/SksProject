@@ -24,7 +24,7 @@ namespace Nima.SKS.Package.Services.Models
     /// 
     /// </summary>
     [DataContract]
-    public partial class WebhookResponse : IEquatable<WebhookResponse>
+    public partial class WebhookResponse 
     { 
         /// <summary>
         /// Gets or Sets Id
